@@ -87,16 +87,29 @@ export default function ScreenBuddy({ size = 200, mood = 'hopeful', cycle = fals
           </filter>
         </defs>
 
-        {/* antennae — drawn first so the stalks tuck behind the head */}
-        <g stroke="#1c1c1e" strokeWidth="3" strokeLinecap="round" fill="#1c1c1e">
+        {/* antennae — drawn first so the stalks tuck behind the head. Each sways
+            around its own base, slightly out of phase, for organic movement. */}
+        <motion.g
+          stroke="#1c1c1e" strokeWidth="3" strokeLinecap="round" fill="#1c1c1e"
+          style={{ transformBox: 'view-box', transformOrigin: '52px 42px' }}
+          animate={reduce ? {} : { rotate: [0, -7, 4, -2, 0] }}
+          transition={reduce ? {} : { duration: 3.1, repeat: Infinity, ease: 'easeInOut' }}
+        >
           <path d="M52 42 Q46 24 42 14" fill="none" />
           <circle cx="42" cy="13" r="4" stroke="none" />
+        </motion.g>
+        <motion.g
+          stroke="#1c1c1e" strokeWidth="3" strokeLinecap="round" fill="#1c1c1e"
+          style={{ transformBox: 'view-box', transformOrigin: '68px 42px' }}
+          animate={reduce ? {} : { rotate: [0, 6, -4, 3, 0] }}
+          transition={reduce ? {} : { duration: 3.7, repeat: Infinity, ease: 'easeInOut' }}
+        >
           <path d="M68 42 Q74 24 78 14" fill="none" />
           <circle cx="78" cy="13" r="4" stroke="none" />
-        </g>
+        </motion.g>
 
-        {/* head — flatter and rounder (squished down) */}
-        <rect x="24" y="38" width="72" height="52" rx="26" fill="var(--accent)" filter="url(#buddyShadow)" />
+        {/* head — flatter, with a moderate (less-round) corner radius */}
+        <rect x="24" y="38" width="72" height="52" rx="13" fill="var(--accent)" filter="url(#buddyShadow)" />
 
         {/* eyes — centred on the face, blink via scaleY */}
         <motion.rect
