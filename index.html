@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#FACC15" />
+
+    <title>ScreenPass — A pass, not a prison. Flexible screen time for families.</title>
+    <meta
+      name="description"
+      content="ScreenPass turns rigid screen-time rules into flexible schedules and earn-more Pass Requests. The parental control app that gives kids a pass, not a prison. Coming soon to iPhone, iPad & Mac."
+    />
+
+    <!-- Open Graph / social -->
+    <meta property="og:title" content="ScreenPass — A pass, not a prison." />
+    <meta
+      property="og:description"
+      content="Flexible schedules and earn-more Pass Requests make screen time a conversation, not a battle. Coming soon to iPhone, iPad & Mac."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Avoid theme flash: set the html class before paint -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var system = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var dark = stored === 'dark' || ((stored === 'system' || !stored) && system);
+          document.documentElement.classList.toggle('dark', dark);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

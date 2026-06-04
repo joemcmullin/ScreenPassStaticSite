@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+   ScreenPass design tokens — mirrors the iOS app's color system exactly.
+   Brand accent #FACC15 (yellow) is a FILL only; `--accent-ink` is the
+   contrast-safe text shade for light mode (matches AccentTheme.ink in-app).
+   ========================================================================== */
+:root {
+  --bg: #ffffff;
+  --bg-surface: #f9fafb;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f4f5f7;
+  --border: #e5e7eb;
+
+  --accent: #facc15; /* brand yellow — fills, badges, mascot */
+  --accent-ink: #8a6d0c; /* readable yellow text on light backgrounds (AA) */
+  --accent-soft: rgba(250, 204, 21, 0.14);
+
+  --text-hi: #1c1c1e;
+  --text-mid: #6b7280;
+  --text-lo: #9ca3af;
+
+  --approve: #15803d;
+  --deny: #b91c1c;
+  --downtime: #7a2a30;
+  --pass: #15803d;
+  --info: #2563eb;
+
+  --grid-line: rgba(28, 28, 30, 0.05);
+}
+
+.dark {
+  --bg: #08080a;
+  --bg-surface: #111114;
+  --bg-card: #1a1a1d;
+  --bg-card-hover: #222226;
+  --border: #34343a;
+
+  --accent: #facc15;
+  --accent-ink: #facc15; /* vivid yellow already reads on near-black */
+  --accent-soft: rgba(250, 204, 21, 0.12);
+
+  --text-hi: #f2f2f7;
+  --text-mid: #9ca3af;
+  --text-lo: #6e6e73;
+
+  --approve: #34c759;
+  --deny: #ff453a;
+  --downtime: #b8636b;
+  --pass: #34c759;
+  --info: #60a5fa;
+
+  --grid-line: rgba(255, 255, 255, 0.05);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-hi);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Global film-grain noise overlay — kills flat digital gradients. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Magnetic button: sliding fill layer + lift on hover. */
+.btn-magnetic {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+.btn-magnetic:hover {
+  transform: scale(1.03) translateY(-1px);
+}
+.btn-magnetic:active {
+  transform: scale(0.98);
+}
+
+.link-lift {
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+.link-lift:hover {
+  transform: translateY(-1px);
+}
+
+/* Selection */
+::selection {
+  background: var(--accent);
+  color: #1c1c1e;
+}
+
+/* Thin scrollbar that respects the theme */
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 99px;
+  border: 3px solid var(--bg);
+}
+
+.dotgrid {
+  background-image: radial-gradient(var(--grid-line) 1.5px, transparent 1.5px);
+  background-size: 26px 26px;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* SVG motif keyframes for the How-It-Works cards */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes scanY {
+  0%, 100% { transform: translateY(-44px); }
+  50% { transform: translateY(44px); }
+}
+@keyframes dash {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
+}
