@@ -69,7 +69,7 @@ export default function Hero() {
             data-rise
             className="mx-auto mt-7 max-w-xl text-balance text-lg leading-relaxed text-mid lg:mx-0"
           >
-            ScreenPass swaps one rigid downtime for flexible schedules and earn-more{' '}
+            ScreenPass swaps one rigid downtime for flexible schedules and one-tap{' '}
             <span className="font-semibold text-hi">Pass Requests</span> — so screen time
             becomes a conversation, not a battle.
           </p>

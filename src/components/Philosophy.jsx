@@ -23,7 +23,7 @@ export default function Philosophy() {
     return () => ctx.revert()
   }, [])
 
-  const big = 'trust, rhythm, and earned freedom.'.split(' ')
+  const big = 'trust, rhythm, and real freedom.'.split(' ')
 
   return (
     <section ref={root} className="relative overflow-hidden bg-surface py-28 sm:py-36">
@@ -45,7 +45,7 @@ export default function Philosophy() {
               key={i}
               data-word
               className={`inline-block ${
-                w.startsWith('earned') || w.startsWith('freedom') ? 'text-accent-ink' : ''
+                w.startsWith('real') || w.startsWith('freedom') ? 'text-accent-ink' : ''
               }`}
             >
               {w}&nbsp;

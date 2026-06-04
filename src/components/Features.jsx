@@ -59,71 +59,101 @@ function ScheduleShuffler() {
 }
 
 /* ------------------------------------------------------------------ Card 2
-   Pass Request feed — typed live, blinking cursor, parent approves. */
-const FEED = [
-  { who: 'Sam', text: 'Can I get 15 more min for Roblox?', status: 'Approved', ok: true },
-  { who: 'Mia', text: 'Homework done — unlock YouTube?', status: 'Approved', ok: true },
-  { who: 'Leo', text: 'One more episode before dinner?', status: 'Denied', ok: false },
+   Pass Request — the child taps a time amount (no typing); parent approves. */
+const DURATIONS = ['15m', '20m', '30m', '45m', '1h']
+const REQUESTS = [
+  { who: 'Sam', idx: 0, label: '15 min', ok: true },
+  { who: 'Mia', idx: 2, label: '30 min', ok: true },
+  { who: 'Leo', idx: 4, label: '1 hour', ok: false },
 ]
 
 function PassFeed() {
   const [line, setLine] = useState(0)
-  const [typed, setTyped] = useState('')
-  const [done, setDone] = useState(false)
+  const [phase, setPhase] = useState('pick') // pick → sent → done
 
   useEffect(() => {
-    const msg = FEED[line].text
-    setTyped('')
-    setDone(false)
-    let i = 0
-    const typer = setInterval(() => {
-      i++
-      setTyped(msg.slice(0, i))
-      if (i >= msg.length) {
-        clearInterval(typer)
-        setTimeout(() => setDone(true), 350)
-        setTimeout(() => setLine((l) => (l + 1) % FEED.length), 2600)
-      }
-    }, 42)
-    return () => clearInterval(typer)
+    setPhase('pick')
+    const t1 = setTimeout(() => setPhase('sent'), 1100)
+    const t2 = setTimeout(() => setPhase('done'), 2300)
+    const t3 = setTimeout(() => setLine((l) => (l + 1) % REQUESTS.length), 3700)
+    return () => {
+      clearTimeout(t1)
+      clearTimeout(t2)
+      clearTimeout(t3)
+    }
   }, [line])
 
-  const cur = FEED[line]
+  const cur = REQUESTS[line]
+  const picked = phase !== 'pick'
+
   return (
     <div className="flex h-44 flex-col rounded-2xl border border-line bg-bg p-4">
       <div className="mb-3 flex items-center gap-2">
         <span className="relative flex h-2 w-2">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-deny opacity-60" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-deny" />
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
         </span>
         <span className="font-mono text-[0.7rem] uppercase tracking-widest text-mid">Live · Pass Requests</span>
       </div>
 
-      <div className="flex flex-1 flex-col justify-center gap-2">
-        <div className="flex items-start gap-2">
-          <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent text-[0.7rem] font-bold text-[#1c1c1e]">
-            {cur.who[0]}
-          </span>
-          <p className="font-mono text-sm leading-snug text-hi">
-            <span className="text-mid">{cur.who}: </span>
-            {typed}
-            {!done && <span className="ml-0.5 inline-block h-4 w-[2px] translate-y-0.5 animate-pulse bg-accent-ink" />}
-          </p>
-        </div>
+      <div className="flex items-center gap-2">
+        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent text-[0.7rem] font-bold text-[#1c1c1e]">
+          {cur.who[0]}
+        </span>
+        <p className="text-sm text-hi">
+          <span className="font-semibold">{cur.who}</span> <span className="text-mid">wants more time</span>
+        </p>
+      </div>
 
-        <AnimatePresence>
-          {done && (
+      {/* one-tap duration picker */}
+      <div className="mt-3 flex gap-1.5">
+        {DURATIONS.map((d, i) => {
+          const on = picked && i === cur.idx
+          return (
+            <motion.span
+              key={d}
+              animate={{ scale: on ? [1, 0.88, 1] : 1 }}
+              transition={{ duration: 0.32 }}
+              className="flex-1 rounded-lg border py-1.5 text-center font-mono text-[0.7rem] font-semibold"
+              style={{
+                background: on ? 'var(--accent)' : 'var(--bg-card)',
+                color: on ? '#1c1c1e' : 'var(--text-lo)',
+                borderColor: on ? 'var(--accent)' : 'var(--border)',
+              }}
+            >
+              {d}
+            </motion.span>
+          )
+        })}
+      </div>
+
+      <div className="mt-auto flex h-7 items-center">
+        <AnimatePresence mode="wait">
+          {phase === 'sent' && (
             <motion.div
+              key="sent"
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="ml-8 inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1 font-mono text-xs font-semibold"
+              className="inline-flex items-center gap-1.5 font-mono text-xs text-mid"
+            >
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
+              Requesting {cur.label}…
+            </motion.div>
+          )}
+          {phase === 'done' && (
+            <motion.div
+              key="done"
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              className="inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1 font-mono text-xs font-semibold"
               style={{
                 color: cur.ok ? 'var(--approve)' : 'var(--deny)',
                 background: cur.ok ? 'rgba(21,128,61,0.12)' : 'rgba(185,28,28,0.12)',
               }}
             >
-              {cur.ok ? '✓' : '✕'} {cur.status} by you
+              {cur.ok ? '✓' : '✕'} {cur.ok ? 'Approved' : 'Denied'} by you
             </motion.div>
           )}
         </AnimatePresence>
@@ -251,8 +281,8 @@ const CARDS = [
   },
   {
     icon: BellRing,
-    title: 'Kids earn more with a Pass',
-    body: 'When they want extra time, kids send a Pass Request. You approve or deny right from the notification.',
+    title: 'Kids just ask for a Pass',
+    body: 'Want more time? Your child taps how much — 15, 30, 45 minutes — and you approve or deny right from the notification.',
     demo: <PassFeed />,
   },
   {

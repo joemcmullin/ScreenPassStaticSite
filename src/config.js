@@ -8,7 +8,7 @@ export const BRAND = {
   name: 'ScreenPass',
   tagline: 'A pass, not a prison.',
   purpose:
-    'The parental control app that swaps rigid downtime for flexible schedules and earn-more Pass Requests.',
+    'The parental control app that swaps rigid downtime for flexible schedules and one-tap Pass Requests.',
   studio: 'Apex Development Studio LLC',
   studioUrl: 'https://apexdevelopmentstudio.com',
   platforms: 'iPhone · iPad · Mac',

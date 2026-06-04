@@ -75,8 +75,8 @@ const STEPS = [
   },
   {
     n: '02',
-    title: 'Kids earn a pass',
-    body: 'When they want more time, your child sends a Pass Request. You get a notification and approve or deny in one tap — no app-switching, no nagging.',
+    title: 'Kids ask for a pass',
+    body: 'When they want more time, your child taps how much and sends a Pass Request. You get a notification and approve or deny in one tap — no app-switching, no nagging.',
     Motif: ScanMotif,
   },
   {
