@@ -13,10 +13,12 @@ export const BRAND = {
   studioUrl: 'https://apexdevelopmentstudio.com',
   platforms: 'iPhone · iPad · Mac',
   launchWindow: '2026',
-  // TODO: confirm these addresses before launch.
-  notifyEmail: 'hello@screenpass.app',
-  supportEmail: 'support@screenpass.app',
-  privacyEmail: 'privacy@screenpass.app',
+  // Real addresses (screenpassapp.com). Waitlist signups, support, and privacy
+  // inquiries all route to the monitored support inbox. noreply@screenpassapp.com
+  // is reserved for outbound/automated mail (e.g. a future form provider).
+  notifyEmail: 'support@screenpassapp.com',
+  supportEmail: 'support@screenpassapp.com',
+  privacyEmail: 'support@screenpassapp.com',
 }
 
 // Prefilled "notify me at launch" mail composer.
