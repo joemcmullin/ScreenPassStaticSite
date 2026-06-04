@@ -5,3 +5,8 @@ dist/
 .env
 .env.*
 .vite/
+
+# Design handoff deliverable (not part of the site)
+claude-design-handoff/
+claude-design-handoff.zip
+.claude/
