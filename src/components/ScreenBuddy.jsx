@@ -1,10 +1,13 @@
 import { useEffect, useReducer, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 
-// Web mascot for ScreenPass: a soft, slightly squished yellow squircle with two
-// antennae, capsule eyes set into the face, blush cheeks, and a mood-driven smile.
-// Idle bob + occasional blink. Decorative — aria-hidden, and all motion gates on
-// Reduce Motion (renders a still current-mood frame).
+// Web mascot for ScreenPass: a soft, flat-ish rounded yellow head with two
+// antennae, two eyes centered on the face, and a mood-driven smile. Idle bob +
+// occasional blink. Decorative — aria-hidden, and all motion gates on Reduce
+// Motion (renders a still current-mood frame).
+//
+// Eyes blink/squint via a CSS transform (scaleY around their own centre) rather
+// than animating the SVG `y` attribute — animating `y` mis-places them on mount.
 
 const MOODS = ['hopeful', 'stoked', 'chill', 'idle', 'sleepy']
 
@@ -18,20 +21,20 @@ function smileFor(mood) {
   }
 }
 
-// Eye capsule height (px in the 120 viewBox). Squashes to ~2 on a blink.
-function eyeHeightFor(mood, blinking) {
-  if (blinking) return 2
+// Vertical scale of the eye capsule: 1 = wide open, ~0.1 = blink.
+function eyeScaleFor(mood, blinking) {
+  if (blinking) return 0.12
   switch (mood) {
-    case 'sleepy': return 6
-    case 'stoked': return 13
-    default: return 12
+    case 'sleepy': return 0.5
+    case 'stoked': return 1.12
+    default: return 1
   }
 }
 
-const EYE_CY = 52
-// mouth spans x 45→75 on baseline y 73; smile bends the control point down.
+const EYE_CY = 62 // eyes sit on the vertical middle of the face
+// mouth spans x 46→74 on baseline y 76; smile bends the control point down.
 function mouthPath(smile) {
-  return `M 45 73 Q 60 ${73 + smile * 8} 75 73`
+  return `M 46 76 Q 60 ${76 + smile * 8} 74 76`
 }
 
 export default function ScreenBuddy({ size = 200, mood = 'hopeful', cycle = false, className = '' }) {
@@ -66,8 +69,8 @@ export default function ScreenBuddy({ size = 200, mood = 'hopeful', cycle = fals
 
   const active = cycle && !reduce ? MOODS[autoIndex] : mood
   const smile = smileFor(active)
-  const eyeH = eyeHeightFor(active, blinking)
-  const cheekOpacity = active === 'stoked' ? 0.7 : 0.5
+  const eyeScale = eyeScaleFor(active, blinking)
+  const eyeStyle = { transformBox: 'fill-box', transformOrigin: 'center' }
 
   return (
     <motion.div
@@ -86,28 +89,26 @@ export default function ScreenBuddy({ size = 200, mood = 'hopeful', cycle = fals
 
         {/* antennae — drawn first so the stalks tuck behind the head */}
         <g stroke="#1c1c1e" strokeWidth="3" strokeLinecap="round" fill="#1c1c1e">
-          <path d="M50 36 Q44 20 40 14" fill="none" />
-          <circle cx="40" cy="13" r="4" stroke="none" />
-          <path d="M70 36 Q76 20 80 14" fill="none" />
-          <circle cx="80" cy="13" r="4" stroke="none" />
+          <path d="M52 42 Q46 24 42 14" fill="none" />
+          <circle cx="42" cy="13" r="4" stroke="none" />
+          <path d="M68 42 Q74 24 78 14" fill="none" />
+          <circle cx="78" cy="13" r="4" stroke="none" />
         </g>
 
-        {/* head — slightly wider than tall (squished / elongated) */}
-        <rect x="24" y="30" width="72" height="62" rx="24" fill="var(--accent)" filter="url(#buddyShadow)" />
+        {/* head — flatter and rounder (squished down) */}
+        <rect x="24" y="38" width="72" height="52" rx="26" fill="var(--accent)" filter="url(#buddyShadow)" />
 
-        {/* blush cheeks */}
-        <circle cx="40" cy="68" r="6" fill="#F2916B" opacity={cheekOpacity} />
-        <circle cx="80" cy="68" r="6" fill="#F2916B" opacity={cheekOpacity} />
-
-        {/* eyes — capsules set into the upper face */}
+        {/* eyes — centred on the face, blink via scaleY */}
         <motion.rect
-          x="46.25" width="7.5" rx="3.75" fill="#1c1c1e"
-          animate={{ height: eyeH, y: EYE_CY - eyeH / 2 }}
+          x="46" y={EYE_CY - 6.5} width="8" height="13" rx="4" fill="#1c1c1e"
+          style={eyeStyle}
+          animate={{ scaleY: eyeScale }}
           transition={{ duration: 0.12, ease: 'easeInOut' }}
         />
         <motion.rect
-          x="66.25" width="7.5" rx="3.75" fill="#1c1c1e"
-          animate={{ height: eyeH, y: EYE_CY - eyeH / 2 }}
+          x="66" y={EYE_CY - 6.5} width="8" height="13" rx="4" fill="#1c1c1e"
+          style={eyeStyle}
+          animate={{ scaleY: eyeScale }}
           transition={{ duration: 0.12, ease: 'easeInOut' }}
         />
 
