@@ -106,8 +106,8 @@ export default function ScreenBuddy({ size = 200, mood = 'hopeful', cycle = fals
           animate={reduce ? {} : { rotate: [0, 13, -9, 6, 0] }}
           transition={reduce ? {} : { duration: 3.0, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <path d="M68 42 Q82 27 77 12" fill="none" />
-          <circle cx="77" cy="11" r="4" stroke="none" />
+          <path d="M68 42 Q80 22 86 16" fill="none" />
+          <circle cx="86" cy="15" r="4" stroke="none" />
         </motion.g>
 
         {/* head — flatter, with a softly rounded corner radius */}
