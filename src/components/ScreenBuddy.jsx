@@ -89,25 +89,25 @@ export default function ScreenBuddy({ size = 200, mood = 'hopeful', cycle = fals
 
         {/* antennae — drawn first so the stalks tuck behind the head. Each sways
             around its own base, slightly out of phase, for organic movement. */}
-        {/* left antenna — gentler curve, lively sway */}
+        {/* left antenna — smooth outward arc, springy bouncing sway */}
         <motion.g
           stroke="#1c1c1e" strokeWidth="3" strokeLinecap="round" fill="#1c1c1e"
-          style={{ transformBox: 'view-box', transformOrigin: '52px 42px' }}
-          animate={reduce ? {} : { rotate: [0, -14, 8, -5, 0] }}
-          transition={reduce ? {} : { duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+          style={{ transformBox: 'view-box', transformOrigin: '53px 42px' }}
+          animate={reduce ? {} : { rotate: [0, -20, 12, -8, 4, 0] }}
+          transition={reduce ? {} : { duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <path d="M52 42 Q46 24 42 14" fill="none" />
-          <circle cx="42" cy="13" r="4" stroke="none" />
+          <path d="M53 42 C 50 32, 44 24, 36 17" fill="none" />
+          <circle cx="36" cy="16" r="4" stroke="none" />
         </motion.g>
-        {/* right antenna — more pronounced curve, swings on its own cadence */}
+        {/* right antenna — a touch more curve, swings on its own springy cadence */}
         <motion.g
           stroke="#1c1c1e" strokeWidth="3" strokeLinecap="round" fill="#1c1c1e"
-          style={{ transformBox: 'view-box', transformOrigin: '68px 42px' }}
-          animate={reduce ? {} : { rotate: [0, 13, -9, 6, 0] }}
-          transition={reduce ? {} : { duration: 3.0, repeat: Infinity, ease: 'easeInOut' }}
+          style={{ transformBox: 'view-box', transformOrigin: '67px 42px' }}
+          animate={reduce ? {} : { rotate: [0, 18, -11, 7, -4, 0] }}
+          transition={reduce ? {} : { duration: 2.7, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <path d="M68 42 Q80 22 86 16" fill="none" />
-          <circle cx="86" cy="15" r="4" stroke="none" />
+          <path d="M67 42 C 70 32, 77 24, 85 17" fill="none" />
+          <circle cx="85" cy="16" r="4" stroke="none" />
         </motion.g>
 
         {/* head — flatter, with a softly rounded corner radius */}

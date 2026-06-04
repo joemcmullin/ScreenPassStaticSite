@@ -76,7 +76,7 @@ export default function Hero() {
 
           <div
             data-rise
-            className="mt-9 flex flex-col items-center gap-3 sm:flex-row lg:items-start lg:justify-start"
+            className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row lg:items-start lg:justify-start"
           >
             <CTAButton href={NOTIFY_MAILTO} icon={Bell}>
               Get notified at launch
