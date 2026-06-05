@@ -21,16 +21,6 @@ export const BRAND = {
   privacyEmail: 'support@screenpassapp.com',
 }
 
-// Prefilled "notify me at launch" mail composer.
-export const NOTIFY_MAILTO =
-  `mailto:${BRAND.notifyEmail}` +
-  '?subject=' +
-  encodeURIComponent('Notify me when ScreenPass launches') +
-  '&body=' +
-  encodeURIComponent(
-    "Hi ScreenPass team,\n\nPlease add me to the launch list — I'd like to know the moment ScreenPass is available on the App Store.\n\nThanks!",
-  )
-
 export const SUPPORT_MAILTO =
   `mailto:${BRAND.supportEmail}` +
   '?subject=' +

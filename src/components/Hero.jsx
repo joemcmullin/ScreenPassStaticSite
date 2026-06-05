@@ -3,7 +3,7 @@ import gsap from 'gsap'
 import { Bell, ArrowDown, Apple } from 'lucide-react'
 import { CTAButton, Eyebrow } from './ui.jsx'
 import ScreenBuddy from './ScreenBuddy.jsx'
-import { BRAND, NOTIFY_MAILTO } from '../config.js'
+import { BRAND } from '../config.js'
 
 export default function Hero() {
   const root = useRef(null)
@@ -78,7 +78,7 @@ export default function Hero() {
             data-rise
             className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row lg:items-start lg:justify-start"
           >
-            <CTAButton href={NOTIFY_MAILTO} icon={Bell}>
+            <CTAButton href="#notify" icon={Bell}>
               Get notified at launch
             </CTAButton>
             <CTAButton href="#how" variant="ghost" icon={ArrowDown}>

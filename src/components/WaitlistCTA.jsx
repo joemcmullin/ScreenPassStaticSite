@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
-import { Bell, Apple } from 'lucide-react'
-import { CTAButton } from './ui.jsx'
+import { Apple } from 'lucide-react'
 import ScreenBuddy from './ScreenBuddy.jsx'
-import { BRAND, NOTIFY_MAILTO } from '../config.js'
+import NotifyForm from './NotifyForm.jsx'
+import { BRAND } from '../config.js'
 
 export default function WaitlistCTA() {
   return (
@@ -35,15 +35,12 @@ export default function WaitlistCTA() {
             No spam, no sharing your address — ever.
           </p>
 
-          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row">
-            <CTAButton href={NOTIFY_MAILTO} icon={Bell}>
-              Notify me at launch
-            </CTAButton>
-            <span className="flex items-center gap-2 text-sm text-lo">
-              <Apple className="h-4 w-4" />
-              Coming to the App Store
-            </span>
-          </div>
+          <NotifyForm />
+
+          <span className="mt-5 flex items-center gap-2 text-sm text-lo">
+            <Apple className="h-4 w-4" />
+            Coming to the App Store
+          </span>
         </div>
       </motion.div>
     </section>

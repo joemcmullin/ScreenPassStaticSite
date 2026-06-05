@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Sun, Moon, Monitor, Bell, Menu, X } from 'lucide-react'
 import { Logo, CTAButton } from './ui.jsx'
 import { useTheme } from '../lib/useTheme.js'
-import { NAV_LINKS, NOTIFY_MAILTO } from '../config.js'
+import { NAV_LINKS } from '../config.js'
 
 const ICON = { light: Sun, dark: Moon, system: Monitor }
 
@@ -61,7 +61,7 @@ export default function Navbar() {
           </button>
 
           <a
-            href={NOTIFY_MAILTO}
+            href="#notify"
             className="btn-magnetic group/btn relative hidden items-center gap-2 overflow-hidden rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[#1c1c1e] sm:inline-flex"
           >
             <span className="absolute inset-0 -translate-x-full bg-white/30 transition-transform duration-500 group-hover/btn:translate-x-0" />
@@ -93,7 +93,7 @@ export default function Navbar() {
                 {l.label}
               </a>
             ))}
-            <CTAButton href={NOTIFY_MAILTO} icon={Bell} className="mt-2 w-full" onClick={() => setOpen(false)}>
+            <CTAButton href="#notify" icon={Bell} className="mt-2 w-full" onClick={() => setOpen(false)}>
               Notify me at launch
             </CTAButton>
           </div>

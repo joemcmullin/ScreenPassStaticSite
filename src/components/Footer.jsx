@@ -1,6 +1,6 @@
 import { Bell } from 'lucide-react'
 import { Logo } from './ui.jsx'
-import { BRAND, NOTIFY_MAILTO } from '../config.js'
+import { BRAND } from '../config.js'
 
 const COLUMNS = [
   {
@@ -35,7 +35,7 @@ export default function Footer() {
               {BRAND.purpose} {BRAND.tagline}
             </p>
             <a
-              href={NOTIFY_MAILTO}
+              href="#notify"
               className="btn-magnetic group/btn relative mt-6 inline-flex items-center gap-2 overflow-hidden rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[#1c1c1e]"
             >
               <span className="absolute inset-0 -translate-x-full bg-white/30 transition-transform duration-500 group-hover/btn:translate-x-0" />
