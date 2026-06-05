@@ -91,6 +91,7 @@ export default function ScreenBuddy({ size = 200, mood = 'hopeful', cycle = fals
             around its own base, slightly out of phase, for organic movement. */}
         {/* left antenna — smooth outward arc, springy bouncing sway */}
         <motion.g
+          className="buddy-antenna"
           stroke="var(--text-hi)" strokeWidth="3" strokeLinecap="round" fill="var(--text-hi)"
           style={{ transformBox: 'view-box', transformOrigin: '53px 42px' }}
           animate={reduce ? {} : { rotate: [0, -20, 12, -8, 4, 0] }}
@@ -101,6 +102,7 @@ export default function ScreenBuddy({ size = 200, mood = 'hopeful', cycle = fals
         </motion.g>
         {/* right antenna — a touch more curve, swings on its own springy cadence */}
         <motion.g
+          className="buddy-antenna"
           stroke="var(--text-hi)" strokeWidth="3" strokeLinecap="round" fill="var(--text-hi)"
           style={{ transformBox: 'view-box', transformOrigin: '67px 42px' }}
           animate={reduce ? {} : { rotate: [0, 18, -11, 7, -4, 0] }}
