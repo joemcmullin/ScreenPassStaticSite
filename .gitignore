@@ -10,3 +10,6 @@ dist/
 claude-design-handoff/
 claude-design-handoff.zip
 .claude/
+
+# Internal docs / runbooks (not part of the site)
+Docs/
