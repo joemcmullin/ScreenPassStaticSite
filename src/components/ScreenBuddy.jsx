@@ -87,26 +87,34 @@ export default function ScreenBuddy({ size = 200, mood = 'hopeful', cycle = fals
           </filter>
         </defs>
 
-        {/* antennae — drawn first so the stalks tuck behind the head. Each sways
-            around its own base, slightly out of phase, for organic movement. */}
-        {/* left antenna — smooth outward arc, springy bouncing sway */}
+        {/* antennae — drawn first so the stalks tuck behind the head. Motion is
+            soft + inertial, phase-locked to the bob's 3s period. The tips trail the
+            body like floppy stalks: as the head bottoms out and starts to rise the
+            tips swing UP, as it tops out and starts to fall they swing DOWN — always
+            opposite the way the body just moved. Rotation follows a cosine sampled
+            at even times, so it eases through the turnarounds (no snap) and glides
+            fastest mid-travel. A small phase lag (peak just past each extreme) reads
+            as the head dragging the stalks along. Tip-up is +rotate on the left and
+            -rotate on the right (mirrored geometry), so both tips move together.
+            Keyframe times: 0 = bottom, 0.5 = top. */}
+        {/* left antenna — tip up near the bottom, down near the top */}
         <motion.g
           className="buddy-antenna"
           stroke="var(--text-hi)" strokeWidth="3" strokeLinecap="round" fill="var(--text-hi)"
           style={{ transformBox: 'view-box', transformOrigin: '53px 42px' }}
-          animate={reduce ? {} : { rotate: [0, -20, 12, -8, 4, 0] }}
-          transition={reduce ? {} : { duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+          animate={reduce ? {} : { rotate: [5.7, 7, 4.9, 0, -4.9, -7, -4.9, 0, 5.7] }}
+          transition={reduce ? {} : { duration: 3, repeat: Infinity, ease: 'linear', times: [0, 0.1, 0.225, 0.35, 0.475, 0.6, 0.725, 0.85, 1] }}
         >
           <path d="M53 42 C 50 32, 44 24, 36 17" fill="none" />
           <circle cx="36" cy="16" r="4" stroke="none" />
         </motion.g>
-        {/* right antenna — a touch more curve, swings on its own springy cadence */}
+        {/* right antenna — same soft swing, a touch lighter and a hair behind */}
         <motion.g
           className="buddy-antenna"
           stroke="var(--text-hi)" strokeWidth="3" strokeLinecap="round" fill="var(--text-hi)"
           style={{ transformBox: 'view-box', transformOrigin: '67px 42px' }}
-          animate={reduce ? {} : { rotate: [0, 18, -11, 7, -4, 0] }}
-          transition={reduce ? {} : { duration: 2.7, repeat: Infinity, ease: 'easeInOut' }}
+          animate={reduce ? {} : { rotate: [-4.1, -6, -4.2, 0, 4.2, 6, 4.2, 0, -4.1] }}
+          transition={reduce ? {} : { duration: 3, repeat: Infinity, ease: 'linear', times: [0, 0.13, 0.255, 0.38, 0.505, 0.63, 0.755, 0.88, 1] }}
         >
           <path d="M67 42 C 70 32, 77 24, 85 17" fill="none" />
           <circle cx="85" cy="16" r="4" stroke="none" />
