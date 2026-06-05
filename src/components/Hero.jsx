@@ -123,7 +123,7 @@ export default function Hero() {
 
             <div
               data-chip
-              className="absolute -bottom-5 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-2xl border border-line bg-card px-3.5 py-2 shadow-card"
+              className="absolute -bottom-5 -left-4 flex items-center gap-2 rounded-2xl border border-line bg-card px-3.5 py-2 shadow-card sm:-left-10"
             >
               <Bell className="h-3.5 w-3.5 text-accent-ink" />
               <span className="font-mono text-xs text-hi">“15 more min?” → Approved ✓</span>

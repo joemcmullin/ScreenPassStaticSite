@@ -22,7 +22,7 @@ const FAQ = [
   },
   {
     q: 'Does it work on Android?',
-    a: 'Not at this time. ScreenPass is a native Apple app built on Family Controls, so it runs on iPhone, iPad, and Mac (iOS/iPadOS 16 and later) only.',
+    a: "Not at this time. ScreenPass is a native Apple app built on Family Controls, and it's launching on iPhone (iOS 16 and later).",
   },
   {
     q: 'Will my schedules sync to the cloud?',
@@ -54,19 +54,55 @@ function FaqItem({ item, open, onToggle }) {
   )
 }
 
-function LegalPanel({ id, icon: Icon, title, children }) {
+function LegalPanel({ id, icon: Icon, title, children, collapsible = false }) {
+  const [open, setOpen] = useState(false)
+  const bodyId = `${id}-body`
+
+  const header = (
+    <>
+      <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-accent-soft text-accent-ink">
+        <Icon className="h-5 w-5" />
+      </span>
+      <div>
+        <h3 className="font-sans text-xl font-extrabold tracking-tight text-hi">{title}</h3>
+        <p className="font-mono text-xs text-lo">Effective {LEGAL_EFFECTIVE}</p>
+      </div>
+    </>
+  )
+
+  const body = (
+    <div className="prose-legal space-y-4 text-[0.95rem] leading-relaxed text-mid">{children}</div>
+  )
+
+  if (!collapsible) {
+    return (
+      <article id={id} className="scroll-mt-28 rounded-[2rem] border border-line bg-card p-7 shadow-card sm:p-9">
+        <div className="mb-5 flex items-center gap-3">{header}</div>
+        {body}
+      </article>
+    )
+  }
+
   return (
     <article id={id} className="scroll-mt-28 rounded-[2rem] border border-line bg-card p-7 shadow-card sm:p-9">
-      <div className="mb-5 flex items-center gap-3">
-        <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-accent-soft text-accent-ink">
-          <Icon className="h-5 w-5" />
-        </span>
-        <div>
-          <h3 className="font-sans text-xl font-extrabold tracking-tight text-hi">{title}</h3>
-          <p className="font-mono text-xs text-lo">Effective {LEGAL_EFFECTIVE}</p>
-        </div>
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="flex w-full items-center gap-3 text-left"
+        aria-expanded={open}
+        aria-controls={bodyId}
+      >
+        {header}
+        <ChevronDown
+          className={`ml-auto h-5 w-5 shrink-0 text-accent-ink transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
+        />
+      </button>
+      <div
+        id={bodyId}
+        className={`grid transition-all duration-300 ease-out ${open ? 'grid-rows-[1fr] pt-5 opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
+      >
+        <div className="overflow-hidden">{body}</div>
       </div>
-      <div className="prose-legal space-y-4 text-[0.95rem] leading-relaxed text-mid">{children}</div>
     </article>
   )
 }
@@ -104,7 +140,7 @@ export default function Legal() {
 
         <div className="mt-10 grid gap-6">
           {/* PRIVACY POLICY */}
-          <LegalPanel id="privacy-policy" icon={ShieldCheck} title="Privacy Policy">
+          <LegalPanel id="privacy-policy" icon={ShieldCheck} title="Privacy Policy" collapsible>
             <p>
               {BRAND.name} is built by {BRAND.studio} (“we,” “us”). We designed it to do its job while
               collecting as little about you and your family as technically possible. This policy explains
@@ -144,7 +180,7 @@ export default function Legal() {
           </LegalPanel>
 
           {/* TERMS */}
-          <LegalPanel id="terms" icon={ScrollText} title="Terms of Use">
+          <LegalPanel id="terms" icon={ScrollText} title="Terms of Use" collapsible>
             <p>
               By downloading or using {BRAND.name}, you agree to these Terms of Use, the Privacy Policy
               above, and Apple’s Licensed Application End User License Agreement (the standard EULA at

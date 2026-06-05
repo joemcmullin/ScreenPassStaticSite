@@ -11,7 +11,7 @@ export const BRAND = {
     'The parental control app that swaps rigid downtime for flexible schedules and one-tap Pass Requests.',
   studio: 'Apex Development Studio LLC',
   studioUrl: 'https://apexdevelopmentstudio.com',
-  platforms: 'iPhone · iPad · Mac',
+  platforms: 'iPhone',
   launchWindow: '2026',
   // Real addresses (screenpassapp.com). Waitlist signups, support, and privacy
   // inquiries all route to the monitored support inbox. noreply@screenpassapp.com

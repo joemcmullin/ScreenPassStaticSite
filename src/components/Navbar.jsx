@@ -12,19 +12,15 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   const ThemeIcon = ICON[theme]
 
-  // Morph the floating island once the hero is scrolled past.
+  // Morph the floating island into an opaque bar as soon as the page scrolls,
+  // so the hero text never bleeds through the nav. A simple scrollY check is
+  // reliable here — the previous IntersectionObserver watched #top, which wraps
+  // the ENTIRE page, so it stayed "intersecting" and never toggled `scrolled`.
   useEffect(() => {
-    const sentinel = document.getElementById('top')
-    if (!sentinel || !('IntersectionObserver' in window)) {
-      const onScroll = () => setScrolled(window.scrollY > 80)
-      window.addEventListener('scroll', onScroll, { passive: true })
-      return () => window.removeEventListener('scroll', onScroll)
-    }
-    const io = new IntersectionObserver(([e]) => setScrolled(!e.isIntersecting), {
-      rootMargin: '-72px 0px 0px 0px',
-    })
-    io.observe(sentinel)
-    return () => io.disconnect()
+    const onScroll = () => setScrolled(window.scrollY > 20)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   return (
@@ -32,7 +28,7 @@ export default function Navbar() {
       <nav
         className={`flex w-full max-w-5xl items-center justify-between rounded-full border px-4 py-2.5 transition-all duration-500 ${
           scrolled
-            ? 'border-line bg-bg/90 backdrop-blur-xl shadow-card'
+            ? 'border-line bg-bg/95 backdrop-blur-xl shadow-card'
             : 'border-transparent bg-transparent'
         }`}
       >

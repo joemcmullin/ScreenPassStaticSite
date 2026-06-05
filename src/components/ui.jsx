@@ -5,9 +5,16 @@ export function Logo({ className = '' }) {
     <a href="#top" className={`flex items-center gap-2.5 group ${className}`} aria-label="ScreenPass home">
       <span className="relative inline-flex h-8 w-8 items-center justify-center rounded-[0.6rem] bg-accent shadow-sm transition-transform duration-300 group-hover:scale-105">
         <svg viewBox="0 0 100 100" className="h-6 w-6">
-          <rect x="27" y="26" width="5" height="11" rx="2.5" fill="#1c1c1e" />
-          <rect x="40" y="26" width="5" height="11" rx="2.5" fill="#1c1c1e" />
-          <path d="M28 46 Q36 53 44 46" stroke="#1c1c1e" strokeWidth="3.2" fill="none" strokeLinecap="round" transform="translate(8,0)" />
+          {/* two small antennae, mirrored around the centre */}
+          <path d="M44 40 C 41 31, 36 25, 31 20" stroke="#1c1c1e" strokeWidth="4" fill="none" strokeLinecap="round" />
+          <circle cx="31" cy="19" r="4" fill="#1c1c1e" />
+          <path d="M56 40 C 59 31, 64 25, 69 20" stroke="#1c1c1e" strokeWidth="4" fill="none" strokeLinecap="round" />
+          <circle cx="69" cy="19" r="4" fill="#1c1c1e" />
+          {/* two eyes, centred and symmetric about x=50 */}
+          <rect x="38" y="48" width="7" height="13" rx="3.5" fill="#1c1c1e" />
+          <rect x="55" y="48" width="7" height="13" rx="3.5" fill="#1c1c1e" />
+          {/* friendly smile, centred on x=50 */}
+          <path d="M38 70 Q50 80 62 70" stroke="#1c1c1e" strokeWidth="4" fill="none" strokeLinecap="round" />
         </svg>
       </span>
       <span className="font-sans text-lg font-extrabold tracking-tight text-hi">
