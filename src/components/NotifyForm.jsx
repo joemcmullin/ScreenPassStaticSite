@@ -13,6 +13,10 @@ const FERNAND_ENDPOINT = 'https://api.getfernand.com/messenger/contact'
 const FERNAND_APP_ID = 'journey-tracker'
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
+// Pre-filled so the visitor can just hit send — they can edit or clear it.
+const DEFAULT_MESSAGE =
+  "Hi ScreenPass team — please let me know the moment the app is released on the App Store. I'd like to be on the launch list. Thanks!"
+
 const inputCls =
   'w-full rounded-2xl border border-line bg-bg px-4 py-3 text-[0.95rem] text-hi ' +
   'placeholder:text-lo outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/40'
@@ -20,7 +24,7 @@ const inputCls =
 export default function NotifyForm() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState(DEFAULT_MESSAGE)
   const [honeypot, setHoneypot] = useState('') // bots fill this; humans never see it
   const [status, setStatus] = useState('idle') // idle | sending | success | error
   const [error, setError] = useState('')

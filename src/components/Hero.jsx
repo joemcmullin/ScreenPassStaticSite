@@ -101,13 +101,13 @@ export default function Hero() {
               data-buddy
               className="relative flex h-72 w-72 items-center justify-center rounded-[3rem] border border-line bg-card/60 backdrop-blur-sm shadow-soft sm:h-80 sm:w-80"
             >
-              <ScreenBuddy size={210} cycle />
+              <ScreenBuddy size={192} cycle />
             </div>
 
             {/* floating status chips */}
             <div
               data-chip
-              className="absolute -left-6 top-6 flex items-center gap-2 rounded-2xl border border-line bg-card px-3.5 py-2 shadow-card sm:-left-12"
+              className="absolute top-4 -left-4 flex items-center gap-2 rounded-2xl border border-line bg-card px-3.5 py-2 shadow-card sm:-left-10"
             >
               <span className="h-2 w-2 rounded-full bg-pass" />
               <span className="font-mono text-xs font-medium text-hi">Pass active · 18 min</span>
@@ -115,7 +115,7 @@ export default function Hero() {
 
             <div
               data-chip
-              className="absolute -right-4 top-1/2 flex items-center gap-2 rounded-2xl border border-line bg-card px-3.5 py-2 shadow-card sm:-right-10"
+              className="absolute bottom-6 -right-4 flex items-center gap-2 rounded-2xl border border-line bg-card px-3.5 py-2 shadow-card sm:-right-10"
             >
               <span className="font-mono text-xs text-mid">School Day</span>
               <span className="font-mono text-xs font-semibold text-accent-ink">9:00–15:00</span>

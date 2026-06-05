@@ -32,7 +32,7 @@ export default function Navbar() {
       <nav
         className={`flex w-full max-w-5xl items-center justify-between rounded-full border px-4 py-2.5 transition-all duration-500 ${
           scrolled
-            ? 'border-line bg-bg/70 backdrop-blur-xl shadow-card'
+            ? 'border-line bg-bg/90 backdrop-blur-xl shadow-card'
             : 'border-transparent bg-transparent'
         }`}
       >
