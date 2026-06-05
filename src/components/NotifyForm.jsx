@@ -21,10 +21,17 @@ const inputCls =
   'w-full rounded-2xl border border-line bg-bg px-4 py-3 text-[0.95rem] text-hi ' +
   'placeholder:text-lo outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/40'
 
-export default function NotifyForm() {
+export default function NotifyForm({
+  submitLabel = 'Notify me at launch',
+  successText = "You're on the list! We'll email you the day ScreenPass launches.",
+  subject = 'ScreenPass — Launch list / website contact',
+  defaultMessage = DEFAULT_MESSAGE,
+  footnote = "No spam, ever. One email at launch — that's it.",
+  icon: Icon = Bell,
+} = {}) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [message, setMessage] = useState(DEFAULT_MESSAGE)
+  const [message, setMessage] = useState(defaultMessage)
   const [honeypot, setHoneypot] = useState('') // bots fill this; humans never see it
   const [status, setStatus] = useState('idle') // idle | sending | success | error
   const [error, setError] = useState('')
@@ -57,7 +64,7 @@ export default function NotifyForm() {
           slug: FERNAND_APP_ID,
           name: name.trim(),
           email: email.trim(),
-          subject: 'ScreenPass — Launch list / website contact',
+          subject,
           message:
             message.trim() ||
             'Requested launch notification from the ScreenPass website.',
@@ -85,7 +92,7 @@ export default function NotifyForm() {
           <Check className="h-5 w-5" strokeWidth={3} />
         </span>
         <p className="text-sm leading-relaxed text-hi">
-          You&rsquo;re on the list! We&rsquo;ll email you the day ScreenPass launches.
+          {successText}
         </p>
       </motion.div>
     )
@@ -169,13 +176,13 @@ export default function NotifyForm() {
               </>
             ) : (
               <>
-                Notify me at launch <Bell className="h-4 w-4" />
+                {submitLabel} <Icon className="h-4 w-4" />
               </>
             )}
           </span>
         </button>
 
-        <p className="text-xs text-lo">No spam, ever. One email at launch — that&rsquo;s it.</p>
+        <p className="text-xs text-lo">{footnote}</p>
       </div>
     </form>
   )

@@ -21,11 +21,6 @@ export const BRAND = {
   privacyEmail: 'support@screenpassapp.com',
 }
 
-export const SUPPORT_MAILTO =
-  `mailto:${BRAND.supportEmail}` +
-  '?subject=' +
-  encodeURIComponent('ScreenPass support')
-
 export const NAV_LINKS = [
   { label: 'Features', href: '#features' },
   { label: 'How it works', href: '#how' },

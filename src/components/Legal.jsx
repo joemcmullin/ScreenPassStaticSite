@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { ChevronDown, ShieldCheck, ScrollText, LifeBuoy, Mail } from 'lucide-react'
-import { Eyebrow, CTAButton } from './ui.jsx'
-import { BRAND, LEGAL_EFFECTIVE, SUPPORT_MAILTO } from '../config.js'
+import { ChevronDown, ShieldCheck, ScrollText, LifeBuoy, Send } from 'lucide-react'
+import { Eyebrow } from './ui.jsx'
+import { BRAND, LEGAL_EFFECTIVE } from '../config.js'
+import NotifyForm from './NotifyForm.jsx'
 
 const FAQ = [
   {
@@ -174,8 +175,7 @@ export default function Legal() {
             <H>Your controls</H>
             <p>
               You can delete all data {BRAND.name} stores by removing the app from your device. To ask a
-              question about your privacy, email{' '}
-              <a className="text-accent-ink" href={`mailto:${BRAND.privacyEmail}`}>{BRAND.privacyEmail}</a>.
+              question about your privacy, you can contact us using the form in the Support section below.
             </p>
           </LegalPanel>
 
@@ -225,20 +225,22 @@ export default function Legal() {
             </p>
             <H>Contact</H>
             <p>
-              Email <a className="text-accent-ink" href={`mailto:${BRAND.supportEmail}`}>{BRAND.supportEmail}</a>.
-              To help us help you fast, include your device model, iOS version, and a short description of
-              what you expected versus what happened.
+              Use the form below to reach us. To help us help you fast, include your device model, iOS
+              version, and a short description of what you expected versus what happened.
             </p>
+            <NotifyForm
+              submitLabel="Send message"
+              successText="Thanks — we've got your message and we'll reply within two business days."
+              subject="ScreenPass — Support request"
+              defaultMessage=""
+              footnote="We usually reply within two business days."
+              icon={Send}
+            />
             <H>Before launch</H>
             <p>
               {BRAND.name} isn’t on the App Store yet. If you’d like product updates and to be notified the
               day it ships, join the launch list below.
             </p>
-            <div className="pt-2">
-              <CTAButton href={SUPPORT_MAILTO} icon={Mail} variant="ghost">
-                Email support
-              </CTAButton>
-            </div>
           </LegalPanel>
         </div>
       </div>

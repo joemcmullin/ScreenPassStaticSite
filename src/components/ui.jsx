@@ -2,23 +2,16 @@
 
 export function Logo({ className = '' }) {
   return (
-    <a href="#top" className={`flex items-center gap-2.5 group ${className}`} aria-label="ScreenPass home">
-      <span className="relative inline-flex h-8 w-8 items-center justify-center rounded-[0.6rem] bg-accent shadow-sm transition-transform duration-300 group-hover:scale-105">
-        <svg viewBox="0 0 100 100" className="h-6 w-6">
-          {/* two small antennae, mirrored around the centre */}
-          <path d="M44 40 C 41 31, 36 25, 31 20" stroke="#1c1c1e" strokeWidth="4" fill="none" strokeLinecap="round" />
-          <circle cx="31" cy="19" r="4" fill="#1c1c1e" />
-          <path d="M56 40 C 59 31, 64 25, 69 20" stroke="#1c1c1e" strokeWidth="4" fill="none" strokeLinecap="round" />
-          <circle cx="69" cy="19" r="4" fill="#1c1c1e" />
-          {/* two eyes, centred and symmetric about x=50 */}
-          <rect x="38" y="48" width="7" height="13" rx="3.5" fill="#1c1c1e" />
-          <rect x="55" y="48" width="7" height="13" rx="3.5" fill="#1c1c1e" />
-          {/* friendly smile, centred on x=50 */}
-          <path d="M38 70 Q50 80 62 70" stroke="#1c1c1e" strokeWidth="4" fill="none" strokeLinecap="round" />
-        </svg>
-      </span>
-      <span className="font-sans text-lg font-extrabold tracking-tight text-hi">
-        Screen<span className="text-accent-ink">Pass</span>
+    <a
+      href="#top"
+      className={`group inline-flex items-center ${className}`}
+      aria-label="ScreenPass home"
+    >
+      {/* Wordmark only — the cramped mascot square mark was removed (the animated
+          hero mascot is the site's one mascot). Sized to roughly match the nav
+          button height, with a bright brand-accent period. */}
+      <span className="font-sans text-[2.05rem] font-extrabold leading-none tracking-tight text-hi transition-transform duration-300 group-hover:scale-[1.03] sm:text-[2.2rem]">
+        Screen<span className="text-accent-ink">Pass</span><span className="text-accent">.</span>
       </span>
     </a>
   )
