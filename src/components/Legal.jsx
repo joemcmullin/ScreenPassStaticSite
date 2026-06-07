@@ -258,9 +258,8 @@ export default function Legal() {
               described here:
             </p>
             <ul className="list-disc space-y-1 pl-5">
-              <li><strong>Apple</strong> — the App Store, in-app purchases/subscriptions, and the Family Controls frameworks the App is built on.</li>
-              <li><strong>Fernand</strong> (getfernand.com) — processes the name, email, and message you submit through the Site’s forms so we can reply.</li>
-              <li><strong>GitHub Pages</strong> — hosts this static website; standard web server logs may be processed by GitHub to deliver and protect the Site.</li>
+              <li><strong>Apple</strong> — the App Store, in-app purchases/subscriptions, and the Family Controls frameworks the App is built on. Apple is the only third party involved in the App itself.</li>
+              <li><strong>Fernand</strong> (getfernand.com) — used only on the website: when you submit the contact or launch-list form, Fernand receives the name, email, and message you provide so we can reply. The App does not use Fernand.</li>
             </ul>
 
             <H>Data retention &amp; deletion</H>
