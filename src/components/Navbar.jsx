@@ -67,17 +67,19 @@ export default function Navbar() {
 
           <button
             onClick={() => setOpen((o) => !o)}
-            aria-label="Menu"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
             className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-card text-hi lg:hidden"
           >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {open ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
           </button>
         </div>
       </nav>
 
       {/* Mobile sheet */}
       {open && (
-        <div className="absolute top-[4.5rem] w-[calc(100%-2rem)] max-w-5xl rounded-4xl border border-line bg-bg/95 p-4 backdrop-blur-xl shadow-soft lg:hidden">
+        <div id="mobile-menu" className="absolute top-[4.5rem] w-[calc(100%-2rem)] max-w-5xl rounded-4xl border border-line bg-bg/95 p-4 backdrop-blur-xl shadow-soft lg:hidden">
           <div className="flex flex-col">
             {NAV_LINKS.map((l) => (
               <a

@@ -9,6 +9,8 @@ export default function Philosophy() {
   const root = useRef(null)
 
   useEffect(() => {
+    // Reduced motion: skip the scrub reveal so words stay fully legible.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const ctx = gsap.context(() => {
       gsap.utils.toArray('[data-word]').forEach((w) => {
         gsap.from(w, {

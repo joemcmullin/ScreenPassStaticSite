@@ -20,7 +20,7 @@
 
   --text-hi: #1c1c1e;
   --text-mid: #6b7280;
-  --text-lo: #9ca3af;
+  --text-lo: #6e737d; /* darkened from #9ca3af for WCAG AA (4.7:1 on white) */
 
   --approve: #15803d;
   --deny: #b91c1c;
@@ -44,7 +44,7 @@
 
   --text-hi: #f2f2f7;
   --text-mid: #9ca3af;
-  --text-lo: #6e6e73;
+  --text-lo: #8a8b93; /* lightened from #6e6e73 for WCAG AA (5.8:1 on near-black) */
 
   --approve: #34c759;
   --deny: #ff453a;
@@ -141,6 +141,39 @@ body::before {
 
 .text-balance {
   text-wrap: balance;
+}
+
+/* ---- Accessibility: visible keyboard focus indicator (WCAG 2.4.7) ---- */
+a:focus-visible,
+button:focus-visible,
+[role='button']:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--text-hi);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---- Skip-to-content link: visible only when focused (WCAG 2.4.1) ---- */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  transform: translateY(-160%);
+  background: var(--accent);
+  color: #1c1c1e;
+  padding: 0.6rem 1rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  box-shadow: 0 8px 30px -8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 /* Mascot antennae: dark-mode-only brand-yellow glow with a gentle pulse.

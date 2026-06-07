@@ -125,6 +125,7 @@ export default function NotifyForm({
               placeholder="First name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              aria-describedby={error ? 'nf-error' : undefined}
               className={inputCls}
             />
           </div>
@@ -139,6 +140,7 @@ export default function NotifyForm({
               placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              aria-describedby={error ? 'nf-error' : undefined}
               className={inputCls}
             />
           </div>
@@ -158,7 +160,7 @@ export default function NotifyForm({
         </div>
 
         {error && (
-          <p role="alert" className="text-sm font-medium text-deny">
+          <p id="nf-error" role="alert" className="text-sm font-medium text-deny">
             {error}
           </p>
         )}

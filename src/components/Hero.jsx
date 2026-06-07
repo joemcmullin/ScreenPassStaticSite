@@ -9,6 +9,9 @@ export default function Hero() {
   const root = useRef(null)
 
   useEffect(() => {
+    // Respect reduced motion — skip the entrance animation so content is
+    // simply present (GSAP `from` would otherwise hide it until it animates).
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const ctx = gsap.context(() => {
       gsap.from('[data-rise]', {
         y: 40,
@@ -92,8 +95,8 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* Buddy column */}
-        <div className="relative flex items-center justify-center">
+        {/* Buddy column — decorative mascot + mockup chips, hidden from AT */}
+        <div className="relative flex items-center justify-center" aria-hidden="true">
           <div className="relative">
             {/* halo */}
             <div className="absolute inset-0 -z-10 m-auto h-72 w-72 rounded-full bg-accent/25 blur-3xl" />

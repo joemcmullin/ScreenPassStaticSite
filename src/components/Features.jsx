@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { CalendarRange, BellRing, Users } from 'lucide-react'
 import { Eyebrow } from './ui.jsx'
 
@@ -13,8 +13,10 @@ const SCHEDULES = [
 ]
 
 function ScheduleShuffler() {
+  const reduce = useReducedMotion()
   const [order, setOrder] = useState([0, 1, 2, 3])
   useEffect(() => {
+    if (reduce) return // reduced motion: hold a static stack
     const id = setInterval(() => {
       setOrder((o) => {
         const next = [...o]
@@ -23,7 +25,7 @@ function ScheduleShuffler() {
       })
     }, 3000)
     return () => clearInterval(id)
-  }, [])
+  }, [reduce])
 
   return (
     <div className="relative h-44">
@@ -68,10 +70,12 @@ const REQUESTS = [
 ]
 
 function PassFeed() {
+  const reduce = useReducedMotion()
   const [line, setLine] = useState(0)
-  const [phase, setPhase] = useState('pick') // pick → sent → done
+  const [phase, setPhase] = useState(reduce ? 'done' : 'pick') // pick → sent → done
 
   useEffect(() => {
+    if (reduce) return // reduced motion: hold a single approved request
     setPhase('pick')
     const t1 = setTimeout(() => setPhase('sent'), 1100)
     const t2 = setTimeout(() => setPhase('done'), 2300)
@@ -81,7 +85,7 @@ function PassFeed() {
       clearTimeout(t2)
       clearTimeout(t3)
     }
-  }, [line])
+  }, [line, reduce])
 
   const cur = REQUESTS[line]
   const picked = phase !== 'pick'
@@ -168,15 +172,17 @@ const DAYS = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
 const TARGET = [1, 2, 3, 4, 5] // weekdays
 
 function WeekScheduler() {
-  const [selected, setSelected] = useState([])
+  const reduce = useReducedMotion()
+  const [selected, setSelected] = useState(reduce ? TARGET : [])
   const [cursor, setCursor] = useState({ x: 12, y: 8 })
   const [pressing, setPressing] = useState(false)
-  const [saved, setSaved] = useState(false)
+  const [saved, setSaved] = useState(reduce)
   const cells = useRef([])
   const saveBtn = useRef(null)
   const wrap = useRef(null)
 
   useEffect(() => {
+    if (reduce) return // reduced motion: show the finished, saved week
     let timers = []
     const point = () => {
       setSelected([])
@@ -221,7 +227,7 @@ function WeekScheduler() {
     }
     timers.push(setTimeout(point, 400))
     return () => timers.forEach(clearTimeout)
-  }, [])
+  }, [reduce])
 
   return (
     <div ref={wrap} className="relative h-44 rounded-2xl border border-line bg-bg p-4">
@@ -257,16 +263,18 @@ function WeekScheduler() {
         {saved ? 'Saved ✓' : 'Save schedule'}
       </button>
 
-      {/* faux cursor */}
-      <motion.svg
-        className="pointer-events-none absolute z-20 drop-shadow"
-        width="22" height="22" viewBox="0 0 24 24"
-        animate={{ left: cursor.x, top: cursor.y, scale: pressing ? 0.85 : 1 }}
-        transition={{ type: 'spring', stiffness: 180, damping: 18 }}
-        style={{ position: 'absolute' }}
-      >
-        <path d="M5 3l14 7-6 1.5L10 19 5 3z" fill="#1c1c1e" stroke="#fff" strokeWidth="1.2" strokeLinejoin="round" />
-      </motion.svg>
+      {/* faux cursor — only during the animated walkthrough */}
+      {!reduce && (
+        <motion.svg
+          className="pointer-events-none absolute z-20 drop-shadow"
+          width="22" height="22" viewBox="0 0 24 24"
+          animate={{ left: cursor.x, top: cursor.y, scale: pressing ? 0.85 : 1 }}
+          transition={{ type: 'spring', stiffness: 180, damping: 18 }}
+          style={{ position: 'absolute' }}
+        >
+          <path d="M5 3l14 7-6 1.5L10 19 5 3z" fill="#1c1c1e" stroke="#fff" strokeWidth="1.2" strokeLinejoin="round" />
+        </motion.svg>
+      )}
     </div>
   )
 }
@@ -316,10 +324,10 @@ export default function Features() {
             transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94], delay: i * 0.1 }}
             className="group flex flex-col rounded-[2rem] border border-line bg-card p-5 shadow-card transition-colors hover:bg-card-hover"
           >
-            {c.demo}
+            <div aria-hidden="true">{c.demo}</div>
             <div className="mt-5 flex items-center gap-2.5">
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-soft text-accent-ink">
-                <c.icon className="h-[1.15rem] w-[1.15rem]" />
+                <c.icon className="h-[1.15rem] w-[1.15rem]" aria-hidden="true" />
               </span>
               <h3 className="font-sans text-lg font-bold tracking-tight text-hi">{c.title}</h3>
             </div>

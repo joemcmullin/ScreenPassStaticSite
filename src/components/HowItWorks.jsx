@@ -91,6 +91,8 @@ export default function HowItWorks() {
   const root = useRef(null)
 
   useEffect(() => {
+    // Reduced motion: skip the scale/blur stacking so cards stay static.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const ctx = gsap.context(() => {
       const cards = gsap.utils.toArray('.hiw-card')
       cards.forEach((card, i) => {
@@ -136,7 +138,7 @@ export default function HowItWorks() {
                   </h3>
                   <p className="mt-4 max-w-md text-balance leading-relaxed text-mid">{s.body}</p>
                 </div>
-                <div className="mx-auto h-40 w-40 text-accent-ink sm:h-48 sm:w-48">
+                <div className="mx-auto h-40 w-40 text-accent-ink sm:h-48 sm:w-48" aria-hidden="true">
                   <s.Motif />
                 </div>
               </div>
