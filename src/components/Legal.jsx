@@ -166,8 +166,9 @@ export default function Legal() {
             <p>
               This Privacy Policy explains how {BRAND.studio} (“{BRAND.name},” “we,” “us,” or “our”) handles
               information in connection with the {BRAND.name} iPhone app (the “App”) and this website at
-              screenpassapp.com (the “Site”). {BRAND.name} is built to do its job while collecting as little
-              about you and your family as technically possible.
+              screenpassapp.com (the “Site”). {BRAND.studio} is a software company registered in the
+              Commonwealth of Virginia. {BRAND.name} is built to do its job while collecting as little about
+              you and your family as technically possible.
             </p>
 
             <H>The short version</H>
@@ -213,6 +214,14 @@ export default function Legal() {
               Subscriptions and the free trial are processed by Apple through the App Store. Apple tells the
               App whether your subscription is active so we can unlock features — we never receive your name,
               card number, or billing details. Subscription management happens in your Apple account settings.
+            </p>
+
+            <H>Information we don’t collect</H>
+            <p>
+              {BRAND.name} does not collect your full name (beyond a first name you may choose to include in a
+              message), physical address or precise location, date of birth, government identifiers, health
+              information, your contacts or photos, or your child’s activity or content. The App has no
+              third-party analytics, and we don’t use advertising cookies.
             </p>
 
             <H>How we use information</H>
@@ -270,17 +279,43 @@ export default function Legal() {
               protect it with appropriate safeguards.
             </p>
 
+            <H>Breach notification</H>
+            <p>
+              We hold almost no personal information, but if we become aware of a security breach affecting
+              information you submitted through the Site, we will notify affected individuals and any
+              applicable regulators as required by law, within the timeframe the law requires.
+            </p>
+
             <H>Your rights &amp; choices</H>
             <p>
               You can delete all App data by removing the App. For information you’ve sent us through the
-              Site, you may request access, correction, or deletion, and you may withdraw consent to further
-              contact, by emailing {BRAND.supportEmail}. Depending on where you live, you may have additional
-              rights: California residents (CCPA/CPRA) have the right to know, delete, and opt out of the
-              “sale” or “sharing” of personal information — we do not sell or share personal information.
-              Residents of the EEA and UK (GDPR) have rights of access, rectification, erasure, restriction,
-              portability, and objection, and may lodge a complaint with their local supervisory authority;
-              our legal basis for processing the information you submit is your consent and our legitimate
-              interest in responding to you.
+              Site, you may request access, correction, or deletion, and withdraw consent to further contact,
+              by emailing {BRAND.supportEmail}.
+            </p>
+
+            <H>California residents (CCPA/CPRA)</H>
+            <p>
+              California residents have the right to know what personal information we collect and how it’s
+              used, to request correction or deletion, to opt out of the “sale” or “sharing” of personal
+              information, and to non-discrimination for exercising these rights. We do not sell or share
+              personal information, and the App does not collect sensitive personal information. To exercise
+              these rights, email {BRAND.supportEmail}; we’ll respond within 45 days, or notify you and respond
+              within 90 days total if an extension is needed.
+            </p>
+
+            <H>Virginia, Colorado &amp; other state residents</H>
+            <p>
+              Residents of Virginia (VCDPA), Colorado (CPA), and other states with consumer-privacy laws have
+              similar rights to access, correct, and delete personal information and to opt out of targeted
+              advertising and sale — neither of which we do. Contact {BRAND.supportEmail} to exercise them.
+            </p>
+
+            <H>EEA &amp; UK (GDPR)</H>
+            <p>
+              If you’re in the EEA or UK, you have rights of access, rectification, erasure, restriction,
+              portability, and objection, and may lodge a complaint with your local supervisory authority. Our
+              legal basis for processing the information you submit is your consent and our legitimate interest
+              in responding to you.
             </p>
 
             <H>International users</H>
@@ -298,10 +333,15 @@ export default function Legal() {
             </p>
 
             <H>Contact</H>
+            <p>Questions about this Privacy Policy or how we handle information? Reach us at:</p>
+            <ul className="list-disc space-y-1 pl-5">
+              <li>App &amp; privacy support: <a className="text-accent-ink" href={`mailto:${BRAND.supportEmail}`}>{BRAND.supportEmail}</a></li>
+              <li>Business &amp; legal: <a className="text-accent-ink" href="mailto:support@apexdevelopmentstudio.com">support@apexdevelopmentstudio.com</a></li>
+              <li>Website: screenpassapp.com · mailing address available upon request</li>
+            </ul>
             <p>
-              Questions about your privacy? Email{' '}
-              <a className="text-accent-ink" href={`mailto:${BRAND.supportEmail}`}>{BRAND.supportEmail}</a>,
-              or use the form in the Support section below. {BRAND.name} is a product of {BRAND.studio}.
+              For deletion or privacy-rights requests, email {BRAND.supportEmail} with the subject line
+              “Privacy Rights Request.” {BRAND.name} is a product of {BRAND.studio}.
             </p>
           </LegalPanel>
 
@@ -368,6 +408,13 @@ export default function Legal() {
               their security; or use the App in any unlawful, harmful, or abusive way.
             </p>
 
+            <H>Your data</H>
+            <p>
+              You own the schedules, profiles, and settings you create in {BRAND.name}. We don’t claim
+              ownership of them — our role is limited to operating the App’s features on your device as
+              described in these Terms and our Privacy Policy.
+            </p>
+
             <H>Intellectual property</H>
             <p>
               {BRAND.name}, the ScreenBuddy character, our logos, and the content of the App and Site are
@@ -396,7 +443,8 @@ export default function Legal() {
             <H>Indemnification</H>
             <p>
               You agree to indemnify and hold harmless {BRAND.studio} from any claims, losses, or expenses
-              arising out of your misuse of {BRAND.name} or your violation of these Terms or applicable law.
+              (including reasonable attorney’s fees) arising out of your misuse of {BRAND.name} or your
+              violation of these Terms or applicable law.
             </p>
 
             <H>Termination</H>
@@ -415,14 +463,19 @@ export default function Legal() {
               third-party beneficiaries of these Terms and may enforce them against you.
             </p>
 
-            <H>Governing law &amp; changes</H>
+            <H>Governing law &amp; dispute resolution</H>
             <p>
-              These Terms are governed by the laws of the Commonwealth of Virginia and applicable U.S.
-              federal law, without regard to conflict-of-laws rules. You agree that any dispute arising out
-              of or relating to these Terms or {BRAND.name} will be brought exclusively in the state or
-              federal courts located in Virginia, and you consent to their jurisdiction. We may update these
-              Terms as {BRAND.name} evolves; changes take effect when posted, with the “Effective” date
-              updated above, and your continued use means you accept the updated Terms.
+              These Terms are governed by the laws of the Commonwealth of Virginia, without regard to
+              conflict-of-laws principles. Any dispute arising under these Terms will be resolved through
+              binding arbitration administered in accordance with the American Arbitration Association’s
+              Consumer Arbitration Rules.
+            </p>
+
+            <H>Changes to these Terms</H>
+            <p>
+              We may update these Terms as {BRAND.name} evolves. We’ll update the “Effective” date above and,
+              for material changes, note them in the App; your continued use after an update means you accept
+              the revised Terms.
             </p>
 
             <H>Contact</H>
