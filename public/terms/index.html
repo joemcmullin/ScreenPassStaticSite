@@ -2,27 +2,57 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#FACC15" />
     <title>Terms of Service · ScreenPass</title>
     <meta name="description" content="ScreenPass Terms of Service — the agreement between you and Apex Development Studio LLC for using the ScreenPass app and website, including subscriptions." />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      try {
+        var t = localStorage.getItem('theme');
+        var d = t === 'dark' || ((t === 'system' || !t) && matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.classList.toggle('dark', d);
+      } catch (e) {}
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/legal.css" />
   </head>
   <body>
-    <header class="bar">
-      <a class="brand" href="/">Screen<span class="ink">Pass</span><span class="dot">.</span></a>
-      <nav>
-        <a href="/privacy">Privacy</a>
-        <a href="/#support">Support</a>
-        <a href="/">Home</a>
+    <header class="nav-header" id="nav">
+      <nav class="nav-pill">
+        <a class="logo" href="/">Screen<span class="ink">Pass</span><span class="dot">.</span></a>
+        <div class="nav-links">
+          <a href="/#features">Features</a>
+          <a href="/#how">How it works</a>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms" class="current">Terms</a>
+          <a href="/#support">Support</a>
+        </div>
+        <div class="nav-actions">
+          <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle theme"></button>
+          <a class="btn-notify" href="/#notify">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+            Notify me
+          </a>
+          <button class="icon-btn hamburger" id="hamburger" type="button" aria-label="Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
       </nav>
+      <div class="mobile-sheet" id="mobileSheet" hidden>
+        <a href="/#features">Features</a>
+        <a href="/#how">How it works</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+        <a href="/#support">Support</a>
+        <a href="/#notify">Notify me at launch</a>
+      </div>
     </header>
 
     <main class="wrap">
+      <span class="eyebrow"><span class="d"></span> The fine print</span>
       <h1>Terms of Service</h1>
       <p class="meta">Effective Date: June 7, 2026 · Last Updated: June 7, 2026</p>
 
@@ -169,15 +199,43 @@
       <a class="backlink" href="/">← Back to ScreenPass</a>
     </main>
 
-    <footer class="foot">
-      <div class="row">
-        <a href="/privacy">Privacy Policy</a>
-        <a href="/terms">Terms of Service</a>
-        <a href="/#support">Support</a>
-        <a href="/">Home</a>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="logo" href="/">Screen<span class="ink">Pass</span><span class="dot">.</span></a>
+            <p>The parental control app that swaps rigid downtime for flexible schedules and one-tap Pass Requests. A pass, not a prison.</p>
+            <a class="btn-notify" href="/#notify">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+              Notify me at launch
+            </a>
+          </div>
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="/#features">Features</a>
+            <a href="/#how">How it works</a>
+            <a href="/#privacy">Private by design</a>
+            <a href="/#faq">FAQ</a>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
+            <a href="/#support">Support</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="status">
+            <span class="ping"></span>
+            <span class="label">In development · Launching 2026</span>
+          </div>
+          <p class="copyright">© 2026 ScreenPass. Designed &amp; built by
+            <a href="https://apexdevelopmentstudio.com" target="_blank" rel="noreferrer">Apex Development Studio LLC</a>.
+          </p>
+        </div>
       </div>
-      © 2026 ScreenPass. Designed &amp; built by
-      <a href="https://apexdevelopmentstudio.com" target="_blank" rel="noreferrer">Apex Development Studio LLC</a>.
     </footer>
+
+    <script src="/legal.js" defer></script>
   </body>
 </html>
