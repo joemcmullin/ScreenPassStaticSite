@@ -1,0 +1,61 @@
+/* Shared styles for the standalone /privacy and /terms pages. Self-contained,
+   no JS, full-text visible — built to be reviewer- and link-checker-proof. */
+:root {
+  --bg: #ffffff; --surface: #f9fafb; --border: #e5e7eb;
+  --text: #1c1c1e; --mid: #4a4a4f; --lo: #6b7280; --accent: #facc15; --ink: #8a6d0c;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #08080a; --surface: #111114; --border: #34343a;
+    --text: #f2f2f7; --mid: #aeb0b6; --lo: #8a8a95; --accent: #facc15; --ink: #facc15;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.65; -webkit-font-smoothing: antialiased;
+}
+a { color: var(--ink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.bar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 0.9rem 1.25rem; border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(12px);
+}
+.brand {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif; font-weight: 800;
+  font-size: 1.35rem; letter-spacing: -0.02em; color: var(--text);
+}
+.brand .ink { color: var(--ink); } .brand .dot { color: var(--accent); }
+.bar nav a { margin-left: 1.1rem; font-size: 0.9rem; color: var(--mid); }
+.bar nav a:hover { color: var(--text); text-decoration: none; }
+
+.wrap { max-width: 760px; margin: 0 auto; padding: 3rem 1.25rem 1rem; }
+h1 {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif; font-weight: 800;
+  font-size: 2.2rem; letter-spacing: -0.02em; margin: 0.2rem 0 0.4rem;
+}
+.meta { color: var(--lo); font-size: 0.85rem; margin: 0 0 1.6rem; }
+.lead { color: var(--mid); font-size: 1.05rem; }
+h2 {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif; font-weight: 700;
+  font-size: 1.3rem; margin: 2.4rem 0 0.6rem; padding-top: 1.4rem;
+  border-top: 1px solid var(--border);
+}
+h3 { font-weight: 700; font-size: 1.02rem; margin: 1.4rem 0 0.35rem; color: var(--text); }
+p { margin: 0.6rem 0; color: var(--mid); }
+strong { color: var(--text); }
+ul { margin: 0.6rem 0; padding-left: 1.3rem; color: var(--mid); }
+li { margin: 0.25rem 0; }
+.backlink { display: inline-block; margin: 2.5rem 0 0; font-weight: 600; }
+
+.foot {
+  max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; margin-top: 2rem;
+  border-top: 1px solid var(--border); color: var(--lo); font-size: 0.85rem;
+}
+.foot a { color: var(--ink); }
+.foot .row { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; margin-bottom: 0.8rem; }

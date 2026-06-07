@@ -24,9 +24,9 @@ export const BRAND = {
 export const NAV_LINKS = [
   { label: 'Features', href: '#features' },
   { label: 'How it works', href: '#how' },
-  // Legal links jump straight to (and auto-expand) the full policy sections.
-  { label: 'Privacy Policy', href: '#privacy-policy' },
-  { label: 'Terms', href: '#terms' },
+  // Legal links go to the dedicated full-text pages.
+  { label: 'Privacy Policy', href: '/privacy' },
+  { label: 'Terms', href: '/terms' },
   { label: 'Support', href: '#support' },
 ]
 

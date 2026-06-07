@@ -3,7 +3,7 @@ import { ShieldCheck, EyeOff, Smartphone, Ban } from 'lucide-react'
 import { Eyebrow } from './ui.jsx'
 
 // A prominent "private by design" strip. Doubles as the #privacy summary; the
-// full legal policy lives below at #privacy-policy.
+// full legal policy lives on the dedicated /privacy page.
 const POINTS = [
   {
     icon: EyeOff,
@@ -36,7 +36,7 @@ export default function PrivacyBand() {
             access — which means there’s nothing to spy on in the first place.
           </p>
           <a
-            href="#privacy-policy"
+            href="/privacy"
             className="link-lift mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent-ink"
           >
             <ShieldCheck className="h-4 w-4" />
