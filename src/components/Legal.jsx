@@ -417,10 +417,12 @@ export default function Legal() {
 
             <H>Governing law &amp; changes</H>
             <p>
-              These Terms are governed by the laws of the United States and the state in which {BRAND.studio}{' '}
-              is organized, without regard to conflict-of-laws rules. We may update these Terms as {BRAND.name}
-              {' '}evolves; changes take effect when posted, with the “Effective” date updated above, and your
-              continued use means you accept the updated Terms.
+              These Terms are governed by the laws of the Commonwealth of Virginia and applicable U.S.
+              federal law, without regard to conflict-of-laws rules. You agree that any dispute arising out
+              of or relating to these Terms or {BRAND.name} will be brought exclusively in the state or
+              federal courts located in Virginia, and you consent to their jurisdiction. We may update these
+              Terms as {BRAND.name} evolves; changes take effect when posted, with the “Effective” date
+              updated above, and your continued use means you accept the updated Terms.
             </p>
 
             <H>Contact</H>
