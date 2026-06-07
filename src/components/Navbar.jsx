@@ -34,7 +34,7 @@ export default function Navbar() {
       >
         <Logo />
 
-        <div className="hidden items-center gap-7 md:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           {NAV_LINKS.map((l) => (
             <a
               key={l.href}
@@ -68,7 +68,7 @@ export default function Navbar() {
           <button
             onClick={() => setOpen((o) => !o)}
             aria-label="Menu"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-card text-hi md:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-card text-hi lg:hidden"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -77,7 +77,7 @@ export default function Navbar() {
 
       {/* Mobile sheet */}
       {open && (
-        <div className="absolute top-[4.5rem] w-[calc(100%-2rem)] max-w-5xl rounded-4xl border border-line bg-bg/95 p-4 backdrop-blur-xl shadow-soft md:hidden">
+        <div className="absolute top-[4.5rem] w-[calc(100%-2rem)] max-w-5xl rounded-4xl border border-line bg-bg/95 p-4 backdrop-blur-xl shadow-soft lg:hidden">
           <div className="flex flex-col">
             {NAV_LINKS.map((l) => (
               <a

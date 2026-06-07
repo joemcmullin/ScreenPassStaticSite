@@ -24,9 +24,11 @@ export const BRAND = {
 export const NAV_LINKS = [
   { label: 'Features', href: '#features' },
   { label: 'How it works', href: '#how' },
-  { label: 'Privacy', href: '#privacy' },
-  { label: 'FAQ', href: '#faq' },
+  // Legal links jump straight to (and auto-expand) the full policy sections.
+  { label: 'Privacy Policy', href: '#privacy-policy' },
+  { label: 'Terms', href: '#terms' },
+  { label: 'Support', href: '#support' },
 ]
 
 // Effective date shown on the legal sections.
-export const LEGAL_EFFECTIVE = 'June 4, 2026'
+export const LEGAL_EFFECTIVE = 'June 7, 2026'
